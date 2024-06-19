@@ -77,5 +77,18 @@ local plugins = {
     "tpope/vim-fugitive",
     lazy = false,
   },
+  {
+    "OlegGulevskyy/better-ts-errors.nvim",
+    dependencies = { "MunifTanjim/nui.nvim" },
+    event = "BufReadPre *.ts,*.tsx",
+    config = function()
+      require('better-ts-errors').setup {
+        keymaps = {
+          toggle = '<leader>dd', -- default '<leader>dd'
+          go_to_definition = '<leader>dx' -- default '<leader>dx'
+        }
+      }
+    end,
+  }
 }
 return plugins
