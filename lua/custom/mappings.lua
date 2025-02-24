@@ -8,6 +8,10 @@ M.general = {
       end,
       "Show line diagnostics",
     },
+    ["<C-h>"] = { "<cmd> TmuxNavigateLeft<cr>", "Window left" },
+    ["<C-l>"] = { "<cmd> TmuxNavigateRight<cr>", "Window right" },
+    ["<C-j>"] = { "<cmd> TmuxNavigateDown<cr>", "Window down" },
+    ["<C-k>"] = { "<cmd> TmuxNavigateUp<cr>", "Window up" },
   },
 }
 

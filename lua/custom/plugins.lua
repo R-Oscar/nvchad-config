@@ -1,5 +1,9 @@
 local plugins = {
   {
+    "christoomey/vim-tmux-navigator",
+    lazy = false,
+  },
+  {
     "nvim-telescope/telescope.nvim",
     config = function()
       require("telescope").setup {
@@ -18,6 +22,26 @@ local plugins = {
         },
       }
     end,
+  },
+  {
+    "nvim-tree/nvim-tree.lua",
+    opts = {
+      view = {
+        adaptive_size = true,
+        preserve_window_proportions = true
+      }
+    }
+  },
+  {
+    'nvim-lualine/lualine.nvim',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    config = function()
+      require('lualine').setup {
+        options = {
+          theme = 'auto',
+        },
+      }
+    end
   },
   {
     "nvimtools/none-ls.nvim",
@@ -89,6 +113,29 @@ local plugins = {
         }
       }
     end,
-  }
+  },
+  {
+    "NvChad/nvterm",
+    lazy = false,
+  },
+  {
+    "mfussenegger/nvim-lint",
+    event = "VeryLazy",
+    config = function()
+      require "custom.configs.lint"
+    end,
+  },
+  {
+    'Exafunction/codeium.vim',
+    event = 'BufEnter',
+      config = function ()
+      -- Change '<C-g>' here to any keycode you like.
+      vim.keymap.set('i', '<C-g>', function () return vim.fn['codeium#Accept']() end, { expr = true, silent = true })
+      vim.keymap.set('i', '<c-;>', function() return vim.fn['codeium#CycleCompletions'](1) end, { expr = true, silent = true })
+      vim.keymap.set('i', '<c-,>', function() return vim.fn['codeium#CycleCompletions'](-1) end, { expr = true, silent = true })
+      vim.keymap.set('i', '<c-x>', function() return vim.fn['codeium#Clear']() end, { expr = true, silent = true })
+    end
+  },
+  { "catppuccin/nvim", name = "catppuccin", priority = 1000 }
 }
 return plugins
